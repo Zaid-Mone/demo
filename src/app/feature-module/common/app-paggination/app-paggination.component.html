@@ -1,0 +1,17 @@
+<nav class="mt-2">
+  <ul class="pagination">
+    <li class="page-item" [ngClass]="{ disabled: currentPage === 1 }">
+      <a class="page-link" (click)="onPageChange(currentPage - 1)">السابق</a>
+    </li>
+
+    <ng-container *ngFor="let num of getDisplayedPages()">
+      <li class="page-item" [ngClass]="{ active: currentPage === num }">
+        <a class="page-link" (click)="onPageChange(num)">{{ num }}</a>
+      </li>
+    </ng-container>
+
+    <li class="page-item" [ngClass]="{ disabled: currentPage === totalPages }">
+      <a class="page-link" (click)="onPageChange(currentPage + 1)">التالي</a>
+    </li>
+  </ul>
+</nav>

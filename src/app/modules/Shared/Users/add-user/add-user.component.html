@@ -1,0 +1,124 @@
+<a
+  class="btn btn-primary"
+  href="javascript:void(0);"
+  data-bs-toggle="modal"
+  data-bs-target="#add_user"
+  ><i class="fa fa-plus-circle me-2" aria-hidden="true"></i>اضافة مستخدم</a
+>
+
+<!-- Add User -->
+<div class="modal custom-modal modal-lg fade" id="add_user" role="dialog">
+  <div class="modal-dialog modal-dialog-centered modal-md">
+    <div class="modal-content">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="modal-header border-0 pb-0">
+          <div class="form-header modal-header-title text-start mb-0">
+            <h4 class="mb-0">اضافة مستخدم جديد</h4>
+          </div>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <hr />
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card-body">
+                <div class="form-groups-item">
+                  <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="input-block mb-3">
+                        <label for="UserName">اسم المستخدم</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          formControlName="username"
+                          placeholder="أدخل اسم المستخدم"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="input-block mb-3">
+                        <label for="Email">البريد الإلكتروني</label>
+                        <input
+                          type="email"
+                          formControlName="email"
+                          class="form-control"
+                          placeholder="أدخل البريد الإلكتروني"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="input-block mb-3">
+                        <label for="Role">الدور الوظيفي</label>
+                        <mat-select
+                          class="select custom-mat-select"
+                          formControlName="roleID"
+                          placeholder="اختيار الدورالوظيفي"
+                        >
+                          <mat-option
+                            *ngFor="let role of roles"
+                            [value]="role.id"
+                            >{{ role.nameAr }}</mat-option
+                          >
+                        </mat-select>
+                      </div>
+                    </div>
+                    <!-- <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="pass-group" id="3">
+                        <div class="input-block">
+                          <label for="Password">كلمة المرور</label>
+                          <input
+                            type="password"
+                            class="form-control pass-input"
+                            formControlName="password"
+                            placeholder=""
+                          />
+                          <span class="toggle-password feather-eye"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="pass-group" id="passwordInput2">
+                        <div class="input-block">
+                          <label for="Confirm">تأكيد كلمة المرور</label>
+                          <input
+                            type="password"
+                            class="form-control pass-input"
+                            formControlName="confirmPassword"
+                            placeholder=""
+                          />
+                          <span class="toggle-password feather-eye"></span>
+                        </div>
+                      </div>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a
+            href="javascript:void(0);"
+            data-bs-dismiss="modal"
+            class="btn btn-back cancel-btn me-2"
+            >إلغاء</a
+          >
+          <button
+            type="submit"
+            data-bs-dismiss="modal"
+            class="btn btn-primary paid-continue-btn"
+            [disabled]="form.invalid"
+          >
+            اضافة
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- /Add User -->

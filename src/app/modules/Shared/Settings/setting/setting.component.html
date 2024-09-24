@@ -1,0 +1,215 @@
+<div class="row">
+  <div class="col-xl-3 col-md-4">
+    <app-setting-menu (tab)="changeTab($event)"></app-setting-menu>
+  </div>
+
+  <div class="col-xl-9 col-md-8">
+    <div class="scroll-content">
+      <div class="card">
+        <ng-container
+          *ngTemplateOutlet="section === 1 ? generalTemplate : privacyTemplate"
+        ></ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #generalTemplate>
+  <div class="card-body w-100">
+    <div class="content-page-header">
+      <h5>إعدادات الحساب</h5>
+    </div>
+    <div class="row">
+      <div class="profile-picture">
+        <div class="upload-profile me-2">
+          <div class="profile-img">
+            <img
+              #userDataImage
+              class="avatar"
+              [src]="
+                userProfile.userImage || 'assets/img/profiles/avatar-10.jpg'
+              "
+              alt="User Image"
+            />
+          </div>
+        </div>
+        <div class="img-upload">
+          <label class="btn btn-primary testBTN" id="btnUpload">
+            تحديث الصورة الشخصية
+            <input type="file" (change)="onFileChange($event)" />
+          </label>
+        </div>
+      </div>
+
+      <div class="col-lg-12">
+        <div class="form-title">
+          <h5>معلومات عامة</h5>
+        </div>
+      </div>
+      <form [formGroup]="generalSettingsForm" (ngSubmit)="onSubmit(1)">
+        <div class="col-lg-6 col-6">
+          <div class="input-block mb-3">
+            <label for="FirstName">First Name</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="firstnameAr"
+              placeholder="Enter First Name"
+            />
+          </div>
+        </div>
+        <div class="col-lg-6 col-6">
+          <div class="input-block mb-3">
+            <label for="LastName">Last Name</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="lastnameAr"
+              placeholder="Enter Last Name"
+            />
+          </div>
+        </div>
+        <div class="col-lg-6 col-12">
+          <div class="input-block mb-3">
+            <label for="MobileNumber">رقم الهاتف</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="phoneNumber"
+              placeholder="Enter Mobile Number"
+            />
+          </div>
+        </div>
+        <div class="col-lg-6 col-12">
+          <div class="input-block mb-3 mb-0">
+            <label for="Gender">الجنس</label>
+            <mat-select
+              class="select custom-mat-select"
+              formControlName="genderID"
+            >
+              <mat-option [value]="0" disabled>اختيار الجنس</mat-option>
+              <mat-option [value]="1">ذكر</mat-option>
+              <mat-option [value]="2">انثى</mat-option>
+            </mat-select>
+          </div>
+        </div>
+        <div class="col-lg-6 col-12">
+          <div class="input-block mb-3">
+            <label for="Birth">تاريخ الميلاد</label>
+            <div class="cal-icon cal-icon-info">
+              <input
+                type="text"
+                class="datetimepicker form-control"
+                placeholder="Select Date"
+                formControlName="birthDate"
+                bsDatepicker
+                [bsConfig]="{ adaptivePosition: true }"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-12">
+          <div class="input-block mb-3">
+            <label for="Email">البريد الالكتروني</label>
+            <input
+              type="text"
+              class="form-control"
+              disabled
+              value="test@email.com"
+            />
+          </div>
+        </div>
+        <div class="col-lg-6 col-12">
+          <div class="input-block mb-3">
+            <label for="MobileNumber">الدور الوظيفي</label>
+            <input
+              type="text"
+              class="form-control"
+              disabled
+              value="المدير العام"
+            />
+          </div>
+        </div>
+        <div class="col-lg-6 col-12">
+          <div class="input-block mb-3">
+            <label for="MobileNumber">اسم المستخدم</label>
+            <input
+              type="text"
+              class="form-control"
+              disabled
+              value="SuperAdmin"
+            />
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="btn-path text-end">
+            <button type="submit" class="btn btn-primary">حفظ</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #privacyTemplate>
+  <div class="card-body w-100">
+    <div class="content-page-header">
+      <h5>إعدادات الخصوصية</h5>
+    </div>
+    <div class="row">
+      <form [formGroup]="changePasswordForm" (ngSubmit)="onSubmit(2)">
+        <div class="col-lg-12 col-12">
+          <div class="input-block mb-3">
+            <label for="currentPassword">كلمة السر الحالية</label>
+            <input
+              type="password"
+              class="form-control"
+              formControlName="currentPassword"
+              placeholder="ادخل كلمة السر الحالية"
+            />
+          </div>
+        </div>
+        <div class="col-lg-12 col-12">
+          <div class="input-block mb-3">
+            <label for="newPassword">كلمة السر الجديدة</label>
+            <input
+              type="password"
+              class="form-control"
+              formControlName="newPassword"
+              placeholder="ادخل كلمة السر الجديدة"
+            />
+          </div>
+        </div>
+        <div class="col-lg-12 col-12">
+          <div class="input-block mb-3">
+            <label for="confirmNewPassword">تأكيد كلمة السر الجديدة</label>
+            <input
+              type="password"
+              class="form-control"
+              formControlName="confirmNewPassword"
+              placeholder="تأكيد كلمة السر الجديدة"
+            />
+          </div>
+          @if (
+            this.changePasswordForm.get("confirmNewPassword")?.touched &&
+            this.changePasswordForm.get("newPassword")?.value !==
+              this.changePasswordForm.get("confirmNewPassword")?.value
+          ) {
+            <span class="text-danger">كلمة السر غير متطابقة</span>
+          }
+        </div>
+        <div class="col-lg-12">
+          <div class="btn-path text-end">
+            <button
+              type="submit"
+              [disabled]="changePasswordForm.invalid"
+              class="btn btn-primary"
+            >
+              حفظ
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>
