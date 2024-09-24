@@ -9,6 +9,11 @@ import { VerificationComponent } from './Components/verification/verification.co
 import { AccessDeniedComponent } from './Components/access-denied/access-denied.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'login',
+  },
     {
       path: 'login',
       component: LoginComponent,
